@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 下拉刷新-->
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        <!-- 正文部分 -->
+        <ListView
+            android:id="@+id/diary_listView"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:divider="@color/transparent"
+            android:dividerHeight="5dp"
+            android:layout_weight="1"
+            />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+        <ImageButton
+            android:id="@+id/add_diary_button"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/selector_btn_add"
+            android:scaleType="fitCenter"
+            android:background="#00ffffff"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
+            />
+</RelativeLayout>

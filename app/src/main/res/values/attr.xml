@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable  name="roundedimageview">
+        <attr name="border_thickness"
+            format="dimension" />
+        <attr name="border_inside_color"
+            format="color" />
+        <attr name="border_outside_color"
+            format="color" />
+    </declare-styleable>
+
+
+    <!--侧滑菜单的子菜单项 -->
+    <string-array name="slidingItem">
+        <item>主页</item>
+        <item>笔记本</item>
+        <item>设置</item>
+        <item>注销</item>
+        <item>关于</item>
+    </string-array>
+
+    <array name="slidingItemIcon">
+        <item>@drawable/home</item>
+        <item>@drawable/location</item>
+        <item>@drawable/water</item>
+        <item>@drawable/trend</item>
+        <item>@drawable/about</item>
+    </array>
+
+
+    <!-- 顶部日志分类：测试-->
+    <string-array name="note_type">
+        <item>所有日志</item>
+        <item>开发领悟</item>
+    </string-array>
+
+</resources>

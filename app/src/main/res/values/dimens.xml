@@ -1,0 +1,30 @@
+<resources>
+    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="slidingmenu_offset">80dp</dimen>
+
+    <!-- 字体大小 -->
+    <dimen name="top_menu_size">16sp</dimen>
+    <dimen name="sliding_menu_item_text">18sp</dimen>
+
+
+
+    <!--侧边栏菜单相关-->
+    <dimen name="sliding_menu_offset">150dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">25dp</dimen>
+    <integer name="num_cols">1</integer>
+
+    <!-- UI内容物间距 -->
+    <dimen name="paddingLeft1">10dp</dimen>
+    <dimen name="paddingRight1">10dp</dimen>
+    <dimen name="paddingTop1">10dp</dimen>
+    <dimen name="paddingBottom1">10dp</dimen>
+
+    <!-- 圆形头像大小 -->
+    <dimen name="roundimage_size">64dp</dimen>
+</resources>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">NoteMyLife</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="allNote">全部日志</string>
+    <string name="allNote1">全部日志 ﹀</string>
+    <string name="allNote2">全部日志 ︿</string>
+
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="detail">详情</string>
+
+    <string name="testString1">爱丽丝梦游仙境</string>
+    <string name="testString2">&#160;&#160;&#160;&#160;《爱丽丝梦游仙境》（Alice in Wonderland ）根据英国作家路易斯·卡罗的同名原著改编，于1951年在美国推出，是迪斯尼的第13部经典动画...</string>
+
+    <string name="toInputTitle">点击输入标题</string>
+
+</resources>

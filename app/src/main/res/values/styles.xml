@@ -1,0 +1,23 @@
+<resources>
+
+    <!--
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    </style> -->
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- 日志内容的样式-->
+    <style name="note_title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="note_content">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/deep_gray</item>
+    </style>
+
+</resources>

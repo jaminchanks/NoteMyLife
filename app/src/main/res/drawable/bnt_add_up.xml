@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 阴影部分
+    <item>
+        <shape android:shape="oval"
+            android:useLevel="false" >
+            <padding
+                android:right="1dp"
+                android:bottom="1dp" />
+            <gradient
+                android:startColor="@color/light_gray2"
+                android:endColor="@color/transparent"
+                android:type="linear"
+                android:angle="90"
+                android:gradientRadius="10dp"
+                />
+            <size android:width="25dp"
+                android:height="25dp" />
+        </shape>
+    </item>
+    -->
+    <!-- 图像部分 -->
+    <item
+        android:bottom="2dp"
+        >
+        <shape android:shape="oval"
+            android:useLevel="false">
+            <solid android:color="@color/light_blue1" />
+            <size
+                android:width="25dp"
+                android:height="25dp" />
+        </shape>
+    </item>
+
+    <!-- 加号 -->
+    <item
+        android:top="5dp"
+        android:bottom="7dp"
+        android:left="11dp"
+        android:right="11dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+    <item
+        android:left="5dp"
+        android:right="5dp"
+        android:top="11dp"
+        android:bottom="13dp" >
+        <shape android:shape="rectangle" >
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+
+
+</layer-list>
