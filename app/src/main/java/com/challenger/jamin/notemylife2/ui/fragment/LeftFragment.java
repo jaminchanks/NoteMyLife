@@ -2,14 +2,23 @@ package com.challenger.jamin.notemylife2.ui.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.challenger.jamin.notemylife2.Base.DataVar;
+import com.challenger.jamin.notemylife2.Base.MyApplication;
 import com.challenger.jamin.notemylife2.R;
+import com.challenger.jamin.notemylife2.bean.User;
 import com.challenger.jamin.notemylife2.ui.activity.MainActivity;
+import com.challenger.jamin.notemylife2.ui.view.RoundImageView;
+
+import java.io.File;
 
 
 /**
@@ -18,17 +27,13 @@ import com.challenger.jamin.notemylife2.ui.activity.MainActivity;
  * @description 侧边栏菜单
  */
 public class LeftFragment extends Fragment implements OnClickListener {
-	private View mainView;
-	private View bookCategoryView;
-	private View robotView;
-	private View accountView;
-	private View settingsView;
-	private View aboutView;
+	RoundImageView headView;
+	TextView tvNickName;
+	View rootLayout;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 	}
 
 	@Override
@@ -39,20 +44,32 @@ public class LeftFragment extends Fragment implements OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.layout_slidngmenu, null);
-		findViews(view);
+		rootLayout = inflater.inflate(R.layout.frag_left, null);
 
-		return view;
-	}
+		//所有选项
+		View mainView = rootLayout.findViewById(R.id.tvMain);
+		View bookCategoryView = rootLayout.findViewById(R.id.tvBookCategory);
+		View robotView = rootLayout.findViewById(R.id.head_robot);
+		View accountView = rootLayout.findViewById(R.id.tvAccount);
+		View settingsView = rootLayout.findViewById(R.id.tvSettings);
+		View aboutView = rootLayout.findViewById(R.id.tvAbout);
+
+		//提取当前登陆用户的信息
+		MyApplication myApplication = (MyApplication)getActivity().getApplication();
+		User user = myApplication.getUser();
+		Log.w("user is null?", (user == null)? "is" : "no");
 
 
-	public void findViews(View view) {
-		mainView = view.findViewById(R.id.tvMain);
-		bookCategoryView = view.findViewById(R.id.tvBookCategory);
-		robotView = view.findViewById(R.id.head_robot);
-		accountView = view.findViewById(R.id.tvAccount);
-		settingsView = view.findViewById(R.id.tvSettings);
-		aboutView = view.findViewById(R.id.tvAbout);
+		//头像
+		headView = (RoundImageView) rootLayout.findViewById(R.id.left_user_head);
+		Log.w("head", user.getHead());
+		headView.setImageBitmap(BitmapFactory.decodeFile(DataVar.APP_IMG_FILE + File.separator + user.getHead()));
+		headView.setOnClickListener(this);
+
+
+		//昵称
+		tvNickName = (TextView) rootLayout.findViewById(R.id.left_user_nickname);
+		tvNickName.setText(user.getNickName());
 
 		mainView.setOnClickListener(this);
 		bookCategoryView.setOnClickListener(this);
@@ -60,7 +77,18 @@ public class LeftFragment extends Fragment implements OnClickListener {
 		accountView.setOnClickListener(this);
 		settingsView.setOnClickListener(this);
 		aboutView.setOnClickListener(this);
+
+		Log.w("test", "leftFragmentonCreateView");
+		return rootLayout;
 	}
+
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		Log.w("test", "onLeftFragmentStart");
+	}
+
 
 	@Override
 	public void onDestroyView() {
@@ -77,6 +105,10 @@ public class LeftFragment extends Fragment implements OnClickListener {
 		Fragment newContent = null;
 		String title = null;
 		switch (v.getId()) {
+			case R.id.left_user_head:
+				newContent = new UserFragment();
+				title = "账户信息";
+				break;
 			case R.id.tvMain: // 主页
 				newContent = new MainFragment();
 				title = "所有日志";
@@ -90,7 +122,7 @@ public class LeftFragment extends Fragment implements OnClickListener {
 				title = "机器人";
 				break;
 			case R.id.tvAccount: // 账户信息
-				newContent = new AccountFragment();
+				newContent = new UserFragment();
 				title = "账户信息";
 				break;
 			case R.id.tvSettings: // 设置
@@ -121,6 +153,25 @@ public class LeftFragment extends Fragment implements OnClickListener {
 			MainActivity fca = (MainActivity) getActivity();
 			fca.switchConent(fragment, title);
 		}
+	}
+
+
+	//更新用户显示信息
+	public void updateUserData() {
+		//提取当前登陆用户的信息
+		MyApplication myApplication = (MyApplication)getActivity().getApplication();
+		User user = myApplication.getUser();
+		Log.w("user is null?", (user == null)? "is" : "no");
+
+		//头像
+		headView = (RoundImageView) rootLayout.findViewById(R.id.left_user_head);
+		Log.w("head", user.getHead());
+		headView.setImageBitmap(BitmapFactory.decodeFile(DataVar.APP_IMG_FILE + File.separator + user.getHead()));
+
+		//昵称
+		tvNickName = (TextView) rootLayout.findViewById(R.id.left_user_nickname);
+		tvNickName.setText(user.getNickName());
+
 	}
 
 }

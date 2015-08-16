@@ -33,6 +33,9 @@ public class Weather {
     }
 
     public String getWeatherType() {
+        if (weatherType == null) {
+            weatherType = "天气未知";
+        }
         return weatherType;
     }
 

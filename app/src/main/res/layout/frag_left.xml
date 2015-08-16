@@ -30,11 +30,13 @@
                 android:paddingBottom="@dimen/paddingBottom1"
                 >
                 <com.challenger.jamin.notemylife2.ui.view.RoundImageView
+                    android:id="@+id/left_user_head"
                     android:layout_margin="@dimen/paddingTop1"
                     android:layout_width="@dimen/roundimage_size"
                     android:layout_height="@dimen/roundimage_size"
                     android:src="@drawable/me"/>
                 <TextView
+                    android:id="@+id/left_user_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="七味和弦"
@@ -87,6 +89,19 @@
         android:background="@drawable/bg_pc_account_line" />
 
     <TextView
+        android:id="@+id/tvAccount"
+        android:layout_width="match_parent"
+        android:layout_height="50.0dip"
+        android:clickable="true"
+        android:drawablePadding="1.0dip"
+        android:gravity="center_vertical"
+        android:paddingLeft="15.0dip"
+        android:paddingRight="10.0dip"
+        android:text="账户信息"
+        android:textColor="@color/white"
+        android:textSize="16.0sp" />
+
+    <TextView
         android:id="@+id/head_robot"
         android:layout_width="match_parent"
         android:layout_height="50.0dip"
@@ -103,18 +118,7 @@
         android:layout_width="match_parent"
         android:layout_height="2.0dip"
         android:background="@drawable/bg_pc_account_line" />
-    <TextView
-        android:id="@+id/tvAccount"
-        android:layout_width="match_parent"
-        android:layout_height="50.0dip"
-        android:clickable="true"
-        android:drawablePadding="1.0dip"
-        android:gravity="center_vertical"
-        android:paddingLeft="15.0dip"
-        android:paddingRight="10.0dip"
-        android:text="账户信息"
-        android:textColor="@color/white"
-        android:textSize="16.0sp" />
+
 
     <View
         android:layout_width="match_parent"

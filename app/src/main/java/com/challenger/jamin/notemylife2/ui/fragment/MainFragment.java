@@ -29,7 +29,6 @@ import com.challenger.jamin.notemylife2.ui.activity.DiaryDetailActivity;
 import com.challenger.jamin.notemylife2.ui.activity.DiaryEditActivity;
 import com.challenger.jamin.notemylife2.ui.activity.MainActivity;
 import com.challenger.jamin.notemylife2.ui.adapter.SimpleDiaryAdapter;
-import com.challenger.jamin.notemylife2.ui.view.WeatherView;
 
 import java.util.ArrayList;
 
@@ -54,7 +53,7 @@ public class MainFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//每次获取数据库，更新数据
-		diaryDao = DiaryDao.getInstance(getActivity());
+		diaryDao = new DiaryDao(getActivity());
 		diaries = diaryDao.getAllDiaries();
 		//初始化adapter
 		adapter = new SimpleDiaryAdapter(getActivity(), diaries);
@@ -104,12 +103,6 @@ public class MainFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), DiaryEditActivity.class);
-				if (weatherLayout != null) {
-					//获得天气类型信息
-					intent.putExtra("weatherType", WeatherView.getWeatherType());
-				}
-				//else
-				//	intent.putExtra("weatherType", "未知");
 				startActivity(intent);
 			}
 		});

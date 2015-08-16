@@ -64,10 +64,24 @@ public class Diary implements Serializable{
     }
 
 
+    public String getWeather() {
+         if (weather == null) {
+            this.weather = "未知,点击修改";
+        }
+        return weather;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+    }
+
+
     private int diaryId;
     private String title;
     private String content;
     private Timestamp createTime;
     private String address;
     private int bookId;
+    private String weather;
+
 }

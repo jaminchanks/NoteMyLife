@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -28,8 +29,10 @@ public class MainActivity extends SlidingFragmentActivity implements
 	private ImageView homeMenu;
 	private Fragment mContent;
 	private TextView topTextView;
+	private SlidingMenu sm;
 	//private NetworkChangeReceive networkChangeReceive;
 
+	private long exitTime1 = 0;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE); // 无标题
@@ -70,7 +73,7 @@ public class MainActivity extends SlidingFragmentActivity implements
 		if (mContent == null) {
 			mContent = new MainFragment();
 			getFragmentManager().beginTransaction()
-				.replace(R.id.content_frame, mContent).commit();
+					.replace(R.id.content_frame, mContent).commit();
 
 		}
 
@@ -80,7 +83,7 @@ public class MainActivity extends SlidingFragmentActivity implements
 				.replace(R.id.menu_frame, new LeftFragment()).commit();
 
 		// 实例化滑动菜单对象
-		SlidingMenu sm = getSlidingMenu();
+		sm = getSlidingMenu();
 		// 设置可以左右滑动的菜单
 		sm.setMode(SlidingMenu.LEFT);
 		// 设置滑动阴影的宽度
@@ -142,6 +145,31 @@ public class MainActivity extends SlidingFragmentActivity implements
 			Toast.makeText(this, "现在处于离线状态", Toast.LENGTH_SHORT).show();
 			return false;
 		}
+	}
+
+	//按键监听
+	@Override
+	public boolean onKeyDown(int key, KeyEvent event){
+		switch (key) {
+			case KeyEvent.KEYCODE_BACK:
+				//若当前页面不是主页，返回主页
+				if (! (mContent instanceof MainFragment)) {
+					switchConent(new MainFragment(), "所有日志");
+				} else {
+					//检测两次按返回键的时间间隔，若与上次相比大于两秒则只是提醒
+					if (System.currentTimeMillis() - exitTime1 > 2000) {
+						Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+						exitTime1 = System.currentTimeMillis();
+					} else {
+						//若两次按键时间小于2s,直接退出程序
+						System.exit(0);
+					}
+				}
+				break;
+			default:
+				break;
+		}
+		return false;
 	}
 
 }

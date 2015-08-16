@@ -60,9 +60,9 @@ public class SimpleDiaryAdapter extends BaseAdapter {
         viewHolder.title.setText(diary.getTitle());
         String limitContent = diary.getContent();
         if (limitContent.length() > 120) {  //对显示的字数有要求（120）
-            limitContent = limitContent.substring(0, 119);
+            limitContent = limitContent.substring(0, 119)  + "......";
         }
-        viewHolder.content.setText("\t" + limitContent + "......");
+        viewHolder.content.setText("\t" + limitContent);
         viewHolder.createTime.setText(diary.getCreateTime());
         viewHolder.address.setText(diary.getAddress());
 

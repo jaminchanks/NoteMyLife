@@ -13,11 +13,14 @@
     <color name="light_gray1">#793e3e3e</color>
     <color name="light_gray2">#32292929</color>
     <color name="gray_white">#ededed</color>
+    <color name="light_white_gray">#dfdfdf</color>
     <color name="yellow">#d3dd17</color>
     <color name="pink">#dd9594</color>
     <color name="orange">#dd4e10</color>
     <color name="light_blue1">#4972ff</color>
     <color name="light_blue2">#ed5175ff</color>
+    <color name="light_blue3">#006cff</color>
+
     <color name="light_green">#7add8e</color>
     <color name="light_red">#bedd353c</color>
     <color name="purple">#dd2a9d</color>

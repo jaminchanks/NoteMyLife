@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.challenger.jamin.notemylife2.Base.MyApplication;
 import com.challenger.jamin.notemylife2.R;
 import com.challenger.jamin.notemylife2.bean.Weather;
 import com.challenger.jamin.notemylife2.net.RequestWeather;
@@ -47,9 +48,14 @@ public class WeatherView extends RelativeLayout{
                         tvWeatherType.setText(weather.getWeatherType());
                         tvWeatherCity.setText(weather.getCity());
                         tvWeatherTemp.setText(weather.getTemp());
-                        tvWeatherTempRange.setText(weather.getL_temp().substring(0, weather.getL_temp().length() - 1)
+                        tvWeatherTempRange.setText(weather.getL_temp().substring(0, weather.getL_temp().length() - 2)
                                 + "/" + weather.getH_temp());
                         view.setVisibility(VISIBLE);
+
+                        //设置全局变量
+                        MyApplication myApplication = (MyApplication)context.getApplicationContext();
+                        myApplication.setWeather(weather);
+
                     }
                     break;
             }

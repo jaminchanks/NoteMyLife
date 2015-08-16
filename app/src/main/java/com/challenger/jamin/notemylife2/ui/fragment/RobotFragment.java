@@ -25,9 +25,8 @@ import java.util.ArrayList;
 public class RobotFragment extends Fragment {
     private static final int GET_ROBOT_RESPONSE = 1;
     private ListView chatListview;
-    private ArrayList chatMessageList;
+    private ArrayList<ChatMessage> chatMessageList;
     private ChatAdapter chatAdapter;
-    private Button btnSendMessage;
     private EditText inputEditText;
 
     private static String inputStr; //用户的输入内容
@@ -48,9 +47,17 @@ public class RobotFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         chatMessageList = new ArrayList<>();
-        ChatMessage chatMessage0 = new ChatMessage("有什么可以帮助到您的吗?", ChatMessage.TYPE_RECEIVE);
-        chatMessageList.add(chatMessage0);
         chatAdapter = new ChatAdapter(getActivity(), chatMessageList);
+        //延迟发送机器人问候语
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ChatMessage chatMessage0 = new ChatMessage("有什么可以帮助到您的吗?", ChatMessage.TYPE_RECEIVE);
+                chatMessageList.add(chatMessage0);
+                chatAdapter.notifyDataSetChanged();
+            }
+        }, 500);
+
     }
 
     @Override
@@ -65,7 +72,7 @@ public class RobotFragment extends Fragment {
         chatListview = (ListView) chatLayout.findViewById(R.id.chat_listview);
         chatListview.setAdapter(chatAdapter);
 
-        btnSendMessage = (Button)chatLayout.findViewById(R.id.message_send_btn);
+        Button btnSendMessage = (Button) chatLayout.findViewById(R.id.message_send_btn);
         btnSendMessage.setOnClickListener(new myOnclickListener());
 
         inputEditText = (EditText)chatLayout.findViewById(R.id.message_input_content);

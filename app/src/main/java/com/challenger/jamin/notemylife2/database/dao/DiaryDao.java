@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.challenger.jamin.notemylife2.bean.Diary;
-import com.challenger.jamin.notemylife2.database.DiaryDatabaseHelper;
+import com.challenger.jamin.notemylife2.database.helper.BaseDatabaseHelper;
 import com.challenger.jamin.notemylife2.database.table.DiaryTable;
 
 import java.util.ArrayList;
@@ -16,26 +16,19 @@ import java.util.ArrayList;
  * Created by jamin on 7/29/15.
  */
 public class DiaryDao {
-//    private Context context;
     private SQLiteDatabase db;
-    private static DiaryDao diaryDao;
-    private ArrayList<Diary> diaries = new ArrayList<>();
+    private ArrayList<Diary> diaries;
 
-    private DiaryDao(Context context) {
-//        this.context = context;
-        DiaryDatabaseHelper diaryDatabaseHelper = new DiaryDatabaseHelper(context);
-        db =  diaryDatabaseHelper.getWritableDatabase();
+    public DiaryDao(Context context) {
+        BaseDatabaseHelper baseDatabaseHelper = BaseDatabaseHelper.getInstance(context);
+        db =  baseDatabaseHelper.getWritableDatabase();
     }
 
-    public synchronized static DiaryDao getInstance(Context context) {
-        if (diaryDao == null)
-            diaryDao = new DiaryDao(context);
-        return diaryDao;
-    }
 
     public void add(Diary diary) {
         ContentValues values = new ContentValues();
         values.put(DiaryTable.TITLE, diary.getTitle());
+        values.put(DiaryTable.WEATHER, diary.getWeather());
         values.put(DiaryTable.CONTENT, diary.getContent());
         values.put(DiaryTable.CREATE_TIME, diary.getCreateTime().toString());
         values.put(DiaryTable.ADDRESS, diary.getAddress());
@@ -46,10 +39,12 @@ public class DiaryDao {
     }
 
     public ArrayList<Diary> getAllDiaries() {
+        diaries = new ArrayList<>();
         Cursor cursor = db.query(DiaryTable.TABLE_NAME, null, null, null,null, null, DiaryTable.CREATE_TIME + " desc");
         //获得各个字段的列数
         int diaryIdIndex = cursor.getColumnIndex(DiaryTable.DIARY_ID);
         int titleIndex = cursor.getColumnIndex(DiaryTable.TITLE);
+        int weatherIndex = cursor.getColumnIndex(DiaryTable.WEATHER);
         int contentIndex = cursor.getColumnIndex(DiaryTable.CONTENT);
         int createTimeIdex = cursor.getColumnIndex(DiaryTable.CREATE_TIME);
         int addressIndex = cursor.getColumnIndex(DiaryTable.ADDRESS);
@@ -59,6 +54,7 @@ public class DiaryDao {
             Diary diary = new Diary();
             diary.setDiaryId(cursor.getInt(diaryIdIndex));
             diary.setTitle(cursor.getString(titleIndex));
+            diary.setWeather(cursor.getString(weatherIndex));
             diary.setContent(cursor.getString(contentIndex));
             diary.setCreateTime(cursor.getString(createTimeIdex));
             diary.setAddress(cursor.getString(addressIndex));

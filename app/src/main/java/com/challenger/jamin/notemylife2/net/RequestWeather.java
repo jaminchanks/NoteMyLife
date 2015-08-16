@@ -49,7 +49,7 @@ public class RequestWeather {
     private static final String HTTP_URL2 = "http://apis.baidu.com/apistore/weatherservice/recentweathers";
 
     public static Weather getWeather(String cityName) {
-        return getWeather2(cityName);
+        return getWeather1(cityName);
     }
 
     //根据URL1网络请求的解析方式
@@ -58,11 +58,12 @@ public class RequestWeather {
             String httpArg = "cityname=" + URLEncoder.encode(cityName, "UTF-8");
             String jsonResult = request(HTTP_URL1, httpArg);
             //开始解析json
+            Log.w("weather", jsonResult);
 
             JSONObject jsonObject = new JSONObject(jsonResult);
             JSONObject retData = jsonObject.getJSONObject("retData");
             weather = new Weather(retData.getString("city"), "20" + retData.getString("date"),
-                    retData.getString("weather"), retData.getString("temp" + "°C"),
+                    retData.getString("weather"), Integer.valueOf(retData.getString("temp")) - 2  + "°C",
                     retData.getString("l_tmp") + "°C", retData.getString("h_tmp") + "°C");
         } catch (Exception e) {
             Log.e("parseJson", "error");

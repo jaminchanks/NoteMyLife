@@ -25,6 +25,10 @@
     <dimen name="paddingTop1">10dp</dimen>
     <dimen name="paddingBottom1">10dp</dimen>
 
+    <!-- 登陆界面 -->
+    <dimen name="login_icon_size">48dp</dimen>
+    <dimen name="login_input_text_size">48sp</dimen>
+
     <!-- 圆形头像大小 -->
     <dimen name="roundimage_size">64dp</dimen>
 </resources>

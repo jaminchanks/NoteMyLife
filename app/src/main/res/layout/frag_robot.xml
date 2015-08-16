@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="发送"
             android:textColor="@color/white"
-            android:background="@drawable/selector_btn_chat_message_send"
+            android:background="@drawable/selector_btn_green"
             />
     </LinearLayout>
 </LinearLayout>
